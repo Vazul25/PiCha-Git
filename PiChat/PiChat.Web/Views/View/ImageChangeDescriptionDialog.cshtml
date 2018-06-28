@@ -1,0 +1,25 @@
+﻿<md-dialog-content class="md-dialog-content" role="document" tabindex="-1" style="width: 400px;">
+    <h2 class="md-title ng-binding" style="margin-bottom: 25px;">{{'cid' | translate}}</h2>
+
+    <form name="imageChangeDescriptionForm">
+        <md-input-container class="md-block" style="margin: 0;">
+            <label>{{'nd' | translate}}</label>
+            <input required maxlength="1000" type="text" id="imageChangeDescriptionFormDescription" name="description" ng-model="imageChangeDescriptionDialogCtrl.newDescription" style="max-width: none; width: 100%;" my-enter="imageChangeDescriptionDialogCtrl.changeDescription()" />
+            <div ng-messages="imageChangeDescriptionForm.description.$error" role="alert">
+                <div ng-message-exp="['required']">
+                    {{'req' | translate}}
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" style="margin-top: 0px; text-align: center;">
+            <md-button md-no-ink class="md-primary" style="" ng-click="imageChangeDescriptionDialogCtrl.cancel()">
+                @*<span class="glyphicon glyphicon-log-in"></span>*@
+                {{'can' | translate}}
+            </md-button>
+            <md-button md-no-ink class="md-primary" style="" ng-click="imageChangeDescriptionDialogCtrl.changeDescription()" ng-disabled="imageChangeDescriptionForm.$invalid">
+                @*<span class="glyphicon glyphicon-log-in"></span>*@ 
+                {{'sav' | translate}}
+            </md-button>
+        </md-input-container>
+    </form>
+</md-dialog-content>

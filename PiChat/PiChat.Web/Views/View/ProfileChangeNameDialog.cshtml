@@ -1,0 +1,23 @@
+﻿<md-dialog-content class="md-dialog-content" role="document" tabindex="-1" style="width: 400px;">
+    <h2 class="md-title ng-binding" style="margin-bottom: 25px;">{{'cyn' | translate}}</h2>
+
+    <form name="profileChangeNameForm">
+        <md-input-container class="md-block" style="margin: 0;">
+            <label>{{'nn' | translate}}</label>
+            <input required maxlength="1000" type="text" id="profileChangeNameFormName" name="name" ng-model="profileChangeNameDialogCtrl.newName" style="max-width: none; width: 100%;" my-enter="profileChangeNameDialogCtrl.changeName()" />
+            <div ng-messages="profileChangeNameForm.name.$error" role="alert">
+                <div ng-message-exp="['required']">
+                    {{'req' | translate}}
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" style="margin-top: 0px; text-align: center;">
+            <md-button md-no-ink class="md-primary" style="" ng-click="profileChangeNameDialogCtrl.cancel()">
+                {{'can' | translate}}
+            </md-button>
+            <md-button md-no-ink class="md-primary" style="" ng-click="profileChangeNameDialogCtrl.changeName()" ng-disabled="profileChangeNameForm.$invalid">
+                {{'sav' | translate}}
+            </md-button>
+        </md-input-container>
+    </form>
+</md-dialog-content>

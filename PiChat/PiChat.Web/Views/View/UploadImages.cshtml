@@ -1,0 +1,86 @@
+﻿<div id="popupContainer">
+    <!--ng-controller="FileUploadController as vm" ng-init="fileUploadCtrl.GetMyGroups()"-->
+    <div class="row">
+        <div class="col-md-12">
+            <h3>{{'upl' | translate}}</h3>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+
+            <md-content class="md-padding" style="background-color: transparent;">
+                <form ng-init="getMyGroups()" ng-submit="$event.preventDefault()">
+                    <md-autocomplete md-selected-item="fileUploadCtrl.selectedItem"
+                                     md-search-text="fileUploadCtrl.searchText"
+                                     md-items="item in fileUploadCtrl.myGroups | filter:{name:fileUploadCtrl.searchText}"
+                                     md-item-text="item.name"
+                                     md-min-length="0"
+                                     placeholder="{{'wgwyut' | translate}}"
+                                     md-no-cache=true>
+                        <md-item-template>
+                            <span md-highlight-text="fileUploadCtrl.searchText" md-highlight-flags="^i">{{item.name}}</span>
+                        </md-item-template>
+
+                    </md-autocomplete>
+                </form>
+            </md-content>
+
+            <!--
+            Copyright 2016 Google Inc. All Rights Reserved.
+            Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+            -->
+
+            <form name="newPhotosForm" role="form" enctype="multipart/form-data">
+                <div class="col col-md-6">
+                    <div class="form-group" ng-hide="hasFiles">
+                        <label for="newPhotos">{{'sel' | translate}}</label><br />
+                        <label class="inputTypeFile">
+                            <input type="file" id="newPhotos" class="uploadFile" accept="image/*" ngf-select ng-model="fileUploadCtrl.files" ngf-multiple="true">
+                            <span>{{'brw' | translate}}</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th width="50%">{{'name' | translate}}</th>
+                                    <th>{{'sz' | translate}}</th>
+                                    <th>{{'act' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in  fileUploadCtrl.files">
+                                    <td>
+                                        <strong>{{ item.name }}</strong>
+                                        <div ng-thumb="{ file: item, height: 100 }"></div>
+                                    </td>
+                                    <td nowrap>{{ item.size/1024/1024|number:2 }} MB</td>
+
+
+                                    <td nowrap>
+                                        <button type="button" class="btn btn-success btn-xs" ng-click="fileUploadCtrl.uploadFile(item)" ng-disabled="fileUploadCtrl.SharedProperties.waitingForResp">
+                                            <span class="glyphicon glyphicon-upload"></span> {{'upl' | translate}}
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs" ng-click="fileUploadCtrl.remove(item)" ng-disabled="fileUploadCtrl.SharedProperties.waitingForResp">
+                                            <span class="glyphicon glyphicon-trash"></span> {{'rem' | translate}}
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <md-button class="md-raised md-primary" ng-click="fileUploadCtrl.uploadFiles(fileUploadCtrl.files)" ng-disabled="fileUploadCtrl.SharedProperties.waitingForResp">
+                            <md-icon>file_upload</md-icon> {{'upl' | translate}}
+                        </md-button>
+                        <input type="reset" class="warn" ng-disabled="fileUploadCtrl.SharedProperties.waitingForResp" value="{{'cl' | translate}}" ng-click="fileUploadCtrl.reset()" />
+                    </div>
+                </div>
+                <div ngf-drop ng-model="fileUploadCtrl.files" ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box ng-valid ng-dirty col-md-6 col" ngf-multiple="true" ngf-allow-dir="true" ngf-accept="'image/*,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword,application/vnd.ms-powerpoint,application/excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/octet-stream,application/zip,application/x-zip'" @*ngf-change="upload(fileUploadCtrl.files,$event)"*@>
+
+                    <div class="droparea"><p class="droptext">{{'upl1' | translate}}  </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>

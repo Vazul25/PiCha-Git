@@ -1,0 +1,95 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h1>{{'profp' | translate}}</h1>
+        <md-card md-theme="default" style="min-height:160px;" md-theme-watch>
+            <div class="row">
+                <div class="col-md-12" style="padding-top: 15px;">
+                    <div class="col-md-2" style="margin-right: 0;">
+                        <img class="profilePicture" src="http://www.gravatar.com/avatar.php?gravatar_id={{profileCtrl.profile.emailHash}}" />
+                        <p style="text-align: center;"><a class="littleLink" href="http://en.gravatar.com/">{{'cpic' | translate}}</a></p>
+                    </div>
+                    <div class="col-md-6" style="padding-left: 0;">
+                        <p>{{'name' | translate}}: {{profileCtrl.profile.name}}</p>
+                        <p>Email: {{profileCtrl.profile.email}}</p>
+                    </div>
+                    <div class="col-md-4" layout="column" layout-align="start end">
+                        <md-button class="md-raised md-primary col-md-3" style="width: 175px;" ng-click="profileCtrl.showChangeNameDialog($event)" ng-disabled="profileCtrl.SharedProperties.waitingForResp">{{'cname' | translate}}</md-button>
+                        <md-button class="md-raised md-primary col-md-3" style="width: 175px;" ng-click="profileCtrl.showChangePasswordDialog($event)" ng-disabled="profileCtrl.SharedProperties.waitingForResp">{{'cpass' | translate}}</md-button>
+                    </div>
+                </div>
+            </div>
+        </md-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <md-button class="md-raised md-primary" ng-click="profileCtrl.showCreateGroupDialog($event)">{{'cng' | translate}}</md-button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="tabsdemoDynamicHeight" ng-cloak="">
+            <md-content>
+                <md-tabs class="" md-dynamic-height="">
+                    <md-tab class="col-md-12" label="{{'ogrp' | translate}}">
+                        <md-content class="md-padding">
+                            <h1 class="md-display-2  row col-md-12">{{'ogrp' | translate}}</h1>
+
+                            <table class="table">
+                                <tr>
+                                    <th class="col-md-1">{{'name' | translate}}</th>
+                                    <th class="col-md-1">{{'priv' | translate}}</th>
+                                    <th class="col-md-2">{{'desc' | translate}}</th>
+                                    <th class="col-md-8">{{'act' | translate}}</th>
+                                </tr>
+                                <tr ng-repeat="g in profileCtrl.adminedGroups">
+                                    <td class="col-md-1">{{g.name}}</td>
+                                    <td class="col-md-1">
+                                        <md-checkbox aria-label="Profile group isPrivate checkbox" ng-disabled="true" ng-checked="g.isPrivate == true"></md-checkbox>
+                                    </td>
+                                    <td class="col-md-2">{{g.description}}</td>
+                                    <td>
+                                        @*Role: 1=NotMember 2=Pending 3=Member 4=Admin 5=Owner*@
+                                        <md-button class="md-raised md-warn col-md-2" ng-click="profileCtrl.showRenameGroupDialog($event, g.id)" ng-disabled="profileCtrl.SharedProperties.waitingForResp">{{'ren' | translate}}</md-button>
+                                        <md-button ng-show="g.role == 5" style="background-color: rgb(244, 67, 54); color: white;" class="md-raised col-md-2" ng-click="profileCtrl.showDeleteGroupDialog($event, g)" ng-disabled="profileCtrl.SharedProperties.waitingForResp">{{'del' | translate}}</md-button>
+                                        <md-button class="md-raised md-warn col-md-4" ng-click="profileCtrl.showChangeDescriptionDialog($event, g.id)" ng-disabled="profileCtrl.SharedProperties.waitingForResp">{{'cdes' | translate}}</md-button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="{{'jreq' | translate}}">
+                        <md-content class="md-padding">
+                            <h1 class="md-display-2  col-md-12">{{'jreq' | translate}}</h1>
+                            <md-button class="md-button" style="background-color:white; color: black;" ng-click="profileCtrl.getRequests()">{{'fresh' | translate}}</md-button>
+                            <table class="table">
+                                <tr>
+                                    <th class="col-md-1">{{'name' | translate}}</th>
+                                    <th class="col-md-2">{{'grpnm' | translate}}</th>
+                                    <th class="col-md-9">{{'owrnm' | translate}}</th>
+                                </tr>
+
+                                <tr ng-repeat="r in profileCtrl.requests">
+                                    <td class="col-md-1">{{r.joinerName}}</td>
+                                    <td class="col-md-2">{{r.groupName}}</td>
+                                    <td class="col-md-2">{{r.ownerName}}</td>
+
+                                    <td>
+                                        <md-button class="md-raised md-warn col-md-3" style="background-color:rgb(76, 175, 80); color: white;" ng-click="profileCtrl.acceptRequest(r.groupMembershipId)" ng-disabled="profileCtrl.SharedProperties.waitingForResp">{{'acc' | translate}}</md-button>
+                                        <md-button class="md-raised md-warn col-md-3" style="background-color:rgb(244, 67, 54); color: white;" ng-click="profileCtrl.rejectRequest(r.groupMembershipId)" ng-disabled="profileCtrl.SharedProperties.waitingForResp">{{'rej' | translate}}</md-button>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </md-content>
+                    </md-tab>
+
+                </md-tabs>
+            </md-content>
+        </div>
+    </div>
+</div>

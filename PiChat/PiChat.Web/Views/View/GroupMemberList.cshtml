@@ -1,0 +1,43 @@
+﻿<md-dialog-content class="md-dialog-content" role="document" tabindex="-1" style="width: 100%;">
+    <h2 class="md-title ng-binding" style="margin-bottom: 25px;">{{'mem' | translate}}:</h2>
+    <md-input-container>
+        <label>{{'fil' | translate}}</label>
+        <input type="text" ng-model="GroupMemberListCtlr.searchText" /> 
+    </md-input-container>
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{'pic1' | translate}}</th>
+                <th width="30%" >{{'name' | translate}}</th>
+              <th  width="30%"> Email</th>
+                <th>{{'act1' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="member in  GroupMemberListCtlr.members |  filter:{name:GroupMemberListCtlr.searchText} ">
+                <td>
+                    <img style="max-height:24px;" src="http://www.gravatar.com/avatar.php?gravatar_id={{member.emailHash}}" />
+                </td>
+                  <td>
+                    <strong>{{ member.name }}</strong>
+                
+                    
+                </td>
+                <td>
+                    <strong>{{ member.email }}</strong>
+                </td>
+              
+
+
+                <td nowrap>
+                    <button type="button" class="btn btn-success btn-xs" ng-click="GroupMemberListCtlr.grantAdmin(member)" ng-hide="GroupMemberListCtlr.group.role!=5 || member.role==4 ">
+                        <span class="glyphicon glyphicon-upload"></span> {{'prom' | translate}}
+                    </button>
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</md-dialog-content>

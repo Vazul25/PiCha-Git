@@ -1,0 +1,25 @@
+﻿<md-dialog-content class="md-dialog-content" role="document" tabindex="-1" style="width: 400px;">
+    <h2 class="md-title ng-binding" style="margin-bottom: 25px;">{{'cgn' | translate}}</h2>
+
+    <form name="groupChangeNameForm">
+        <md-input-container class="md-block" style="margin: 0;">
+            <label>{{'nn' | translate}}</label>
+            <input required maxlength="1000" type="text" id="groupChangeNameFormName" name="name" ng-model="groupChangeNameDialogCtrl.newName" style="max-width: none; width: 100%;" my-enter="groupChangeNameDialogCtrl.changeName()" />
+            <div ng-messages="groupChangeNameForm.name.$error" role="alert">
+                <div ng-message-exp="['required']">
+                    {{'req' | translate}}
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" style="margin-top: 0px; text-align: center;">
+            <md-button md-no-ink class="md-primary" style="" ng-click="groupChangeNameDialogCtrl.cancel()">
+                @*<span class="glyphicon glyphicon-log-in"></span>*@
+                {{'can' | translate}}
+            </md-button>
+            <md-button md-no-ink class="md-primary" style="" ng-click="groupChangeNameDialogCtrl.changeName()" ng-disabled="groupChangeNameForm.$invalid">
+                @*<span class="glyphicon glyphicon-log-in"></span>*@
+                {{'sav' | translate}}
+            </md-button>
+        </md-input-container>
+    </form>
+</md-dialog-content>

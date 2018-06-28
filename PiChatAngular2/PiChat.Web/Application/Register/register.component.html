@@ -1,0 +1,53 @@
+﻿<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <language-select></language-select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <md-card>
+            <md-toolbar color="primary">
+                {{ 'reg' | translate }}
+                <loading-indicator></loading-indicator>
+            </md-toolbar>
+            <md-card-content>
+                <form [formGroup]="registerForm" (ngSubmit)="register()" >
+                    <div >
+                        <md-input type="text" name="name" class="register-component-input" placeholder="{{ 'name' | translate }}" [formControl]="name" required></md-input>
+              
+                        <span class="md-body-1 errorMessage" *ngIf="name.errors && name.errors.required">{{'req' | translate}}</span>
+                       
+                    </div>
+                    <div >
+                        <md-input type="email" name="email" class="register-component-input" placeholder="Email" [formControl]="email" validateEmail required></md-input>
+                        <span class="md-body-1 errorMessage" *ngIf="email.errors && email.errors.required">{{'req' | translate}}</span>
+                        <span class="md-body-1 errorMessage" *ngIf="email.errors && email.errors.validateEmail"> {{'notValidEmail' | translate}}</span>
+                    </div>
+                    <div  >
+                        <md-input type="password" name="password" class="register-component-input" placeholder="{{ 'pass' | translate }}" [formControl]="password" required minlength="6" maxlength="32" pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,32}$"    ></md-input>
+                        <span class="md-body-1 errorMessage" *ngIf="password.errors && password.errors.pattern">{{'val5' | translate}}</span>
+                        <span class="md-body-1 errorMessage" *ngIf="password.errors && password.errors.minlength">{{'val4' | translate}}</span>
+                        <span class="md-body-1 errorMessage" *ngIf="password.errors && password.errors.maxlength">{{'val3' | translate}}</span>
+                        <span class="md-body-1 errorMessage" *ngIf="password.errors && password.errors.required">{{'req' | translate}}</span>
+                        <span class="md-body-1 errorMessage" *ngIf="password.errors && password.errors.mymatch"> {{'passwordMatchError' | translate}}</span>
+                    </div>
+                    <div  >
+                        <md-input type="password" name="passwordConfirm" class="register-component-input" placeholder="{{ 'passc' | translate }}" [formControl]="passwordConfirm" required minlength="6" maxlength="32" pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,32}$" [mymatch]="password" ></md-input>
+                        <span class="md-body-1 errorMessage" *ngIf="passwordConfirm.errors && passwordConfirm.errors.pattern">{{'val5' | translate}}</span>
+                        <span class="md-body-1 errorMessage" *ngIf="passwordConfirm.errors && passwordConfirm.errors.minlength">{{'val4' | translate}}</span>
+                        <span class="md-body-1 errorMessage" *ngIf="passwordConfirm.errors && passwordConfirm.errors.maxlength">{{'val3' | translate}}</span>
+                        <span class="md-body-1 errorMessage" *ngIf="passwordConfirm.errors && passwordConfirm.errors.required">{{'req' | translate}}</span>
+                        <span class="md-body-1 errorMessage" *ngIf="passwordConfirm.errors && passwordConfirm.errors.mymatch">{{'passwordMatchError' | translate}}</span>
+                    </div>
+                    <div class="form-group register-component-registerbutton-container">
+                        <button md-raised-button color="primary" type="submit"  [disabled]="!registerForm.valid" class="register-component-registerbutton">{{ 'reg' | translate }}</button>
+                    </div>
+                </form>
+                <md-divider class="register-component-divider"></md-divider>
+                <div class="register-component-loginlink-container">
+                    <button md-button [routerLink]="['/login']">{{ 'regmsg' | translate }}</button>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

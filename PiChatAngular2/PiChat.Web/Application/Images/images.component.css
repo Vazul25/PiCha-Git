@@ -1,0 +1,60 @@
+﻿.ng2-dropdown-button {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial !important;
+    width: 250px;
+}
+
+    .ng2-dropdown-button:active {
+        border-bottom: 2px solid #009688 !important;
+    }
+
+.caret {
+    background: none !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.ng2-dropdown-container {
+    margin-left: 8px;
+    line-height: 35px;
+}
+
+.ng2-dropdown-menu-container {
+    position: absolute !important;
+    top: 320px !important;
+    margin-left: 5px !important;
+    z-index: 100 !important;
+}
+
+.fab {
+    height: 80px !important;
+    width: 80px !important;
+}
+
+.card-button-container {
+    text-align: right;
+    margin-top: 5px;
+}
+
+.magnify-overlay {
+    opacity: 1;
+    -o-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -webkit-transition: -webkit-transform 1s;
+    background: url(zoom.png) center center no-repeat #000;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+}
+
+.magnify-overlay:hover {
+    opacity: .5;
+    -o-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -webkit-transition: -webkit-transform 1s;
+    -webkit-box-shadow: 0px 0px 4px #000;
+    -moz-box-shadow: 0px 0px 4px #000;
+    box-shadow: 0px 0px 4px #000;
+}

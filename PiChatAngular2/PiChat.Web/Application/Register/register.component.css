@@ -1,0 +1,22 @@
+﻿.register-component-input {
+    width: 100%;
+}
+
+.register-component-registerbutton-container {
+    text-align: center;
+}
+
+.register-component-registerbutton {
+    width: 200px;
+}
+
+.register-component-divider {
+    margin-top: 50px;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.38) !important;
+}
+
+.register-component-loginlink-container {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.60);
+}

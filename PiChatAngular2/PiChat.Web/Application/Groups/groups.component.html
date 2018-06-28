@@ -1,0 +1,124 @@
+﻿<h1>{{ 'gr' | translate }}</h1>
+<div>
+    <div class="row" style="margin-bottom: 50px;">
+        <div class="col-md-12" aria-label="My groups">
+            <md-toolbar color="primary">
+                <div class="md-toolbar-tools">
+                    <h2>{{ 'myg' | translate }}</h2>
+                    <span class="fill-remaining-space"></span>
+                    <button md-button id="toogle-my-groups-container" (click)="isMyGroupsVisible = !isMyGroupsVisible" data-toggle="collapse" data-target="#my-groups-container">
+                        <span class="glyphicon {{isMyGroupsVisible ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'}}"></span>
+                    </button>
+                </div>
+            </md-toolbar>
+            <div id="my-groups-container" style="margin-top: 35px; margin-left: 20px; margin-right: 20px;" class="collapse in" *ngIf="myGroups.length > 0">
+                <md-grid-list cols="4" gutterSize="10px" rowHeight="4:3">
+                    <md-grid-tile *ngFor="let grp of myGroups" [style.background]="(grp.membersCount >= 3) ? '#66ff66': 'white'">
+                        <div class="groupinfo">
+                            <div (click)="getMembers(grp); listMembersModal.open();">
+                                <h4>{{grp.name}}</h4>
+                                <h5>{{grp.ownerName}}</h5>
+                                <p>{{grp.description}}</p>
+                                <p>{{ 'pic' | translate }}: {{grp.picturesCount}} {{ 'mem' | translate }}: {{grp.membersCount}}</p>
+                            </div>
+                            <!--Role: 1=NotMember 2=Pending 3=Member 4=Admin 5=Owner-->
+                            <button md-raised-button color="warn" *ngIf="grp.role == 3 || grp.role == 4" (click)="leaveGroup(grp)">{{ 'uns' | translate }}</button>
+                        </div>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+            <div class="alert-message">
+                <div class="alert alert-success" role="alert" *ngIf="myGroups.length == 0">{{ 'msg1' | translate }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <md-toolbar color="primary">
+                <div class="md-toolbar-tools">
+                    <h2>{{ 'oth' | translate }}</h2>
+                </div>
+            </md-toolbar>
+            <div style="margin-top: 35px;margin-left: 20px;margin-right: 20px;" class="groupSearchContainer">
+                <md-input placeholder="{{ 'fil' | translate }}" id="TeamNameInput" [(ngModel)]="filter" class="login-component-input" [formControl]="filterControl">
+                    <span md-prefix><md-icon>search</md-icon></span>
+                </md-input>
+            </div>
+        </div>
+
+        <div class="col-md-12" *ngIf="otherGroups.length > 0">
+            <div ng-cloak style="margin-top: 35px; margin-left: 20px; margin-right: 20px;">
+                <md-grid-list cols="4" gutterSize="10px" rowHeight="4:3">
+                    <md-grid-tile *ngFor="let grp of otherGroups">
+                        <div class="groupinfo">
+                            <h4>{{grp.name}}</h4>
+                            <h5>{{grp.ownerName}}</h5>
+                            <p>{{grp.description}}</p>
+                            <p>{{ 'pic' | translate }}: {{grp.picturesCount}} {{ 'mem' | translate }}: {{grp.membersCount}}</p>
+                            <!--Role: 1=NotMember 2=Pending 3=Member 4=Admin 5=Owner-->
+                            <button md-raised-button color="accent" *ngIf="grp.role == 1" (click)="joinGroup(grp)">{{ 'sub' | translate }}</button>
+                            <button md-raised-button *ngIf="grp.role == 2">{{ 'pen' | translate }}</button>
+                        </div>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+            <div class="alert-message">
+                <button md-fab (click)="showMore()" *ngIf="hasMore" class="fab">{{ 'more' | translate }}</button>
+                <div class="alert alert-success" role="alert" *ngIf="!hasMore">{{ 'msg2' | translate }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="alert-message">
+                <div class="alert alert-success" role="alert" *ngIf='otherGroups.length == 0 && filter != ""'>{{ 'msg3' | translate }}</div>
+                <div class="alert alert-success" role="alert" *ngIf='otherGroups.length == 0 && filter == ""'>{{ 'msg4' | translate }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<modal #listMembersModal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">{{'mem' | translate}}</h4>
+    </modal-header>
+    <modal-body>
+        <md-input type="text" name="name" class="login-component-input" placeholder="{{'fil' | translate}}" [formControl]="term"></md-input>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{{'pic1' | translate}}</th>
+                    <th width="30%">{{'name' | translate}}</th>
+                    <th width="30%"> Email</th>
+                    <th>{{'act1' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--|  filter:{name:GroupMemberListCtlr.searchText}-->
+                <tr *ngFor="let member of filteredMembers">
+                    <td>
+                        <img style="max-height:24px;" src="http://www.gravatar.com/avatar.php?gravatar_id={{member.emailHash}}" />
+                    </td>
+                    <td>
+                        <strong>{{ member.name }}</strong>
+                    </td>
+                    <td>
+                        <strong>{{ member.email }}</strong>
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs" (click)="grantAdmin(member)" *ngIf="!(groupOfListing.role!=5 || member.role==4)">
+                            <span class="glyphicon glyphicon-upload"></span> {{'prom' | translate}}
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </modal-body>
+    <modal-footer [show-default-buttons]="false"></modal-footer>
+</modal>
+
+
+
+

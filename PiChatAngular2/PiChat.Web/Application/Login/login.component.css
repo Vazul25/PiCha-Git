@@ -1,0 +1,22 @@
+﻿.login-component-input {
+    width: 100%;
+}
+
+.login-component-loginbutton-container {
+    text-align: center;
+}
+
+.login-component-loginbutton {
+    width: 200px;
+}
+
+.login-component-divider {
+    margin-top: 50px;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.38) !important;
+}
+
+.login-component-registerlink-container {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.60);
+}

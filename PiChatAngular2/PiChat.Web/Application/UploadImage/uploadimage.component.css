@@ -1,0 +1,29 @@
+﻿.my-drop-zone {
+    border: dotted 3px lightgray;
+}
+
+.nv-file-over {
+    border: dotted 3px red;
+}
+/* Default class applied to drop zones on over */
+.another-file-over-class {
+    border: dotted 3px green;
+}
+
+.droparea {
+    height: 300px;
+    width: 300px;
+    padding: 10px;
+    border: 5px dotted gray;
+    margin: auto;
+    align-content: center;
+    text-align: center;
+}
+
+.droptext {
+    margin-top: 120px;
+}
+
+.myPreviewImage {
+    width: 100%;
+}

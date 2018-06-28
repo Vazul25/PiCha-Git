@@ -1,0 +1,15 @@
+﻿.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.home-toolbar-button {
+    color: rgba(0, 0, 0, 0.87) !important;
+    margin: 0 5px 0 5px !important;
+}
+
+.alert-message {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    text-align: center;
+}

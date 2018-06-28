@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PiChat Web</title>
+    @Styles.Render("~/Content/css")
+
+    <link rel="stylesheet" href="~/Application/Login/login.component.css"/>
+    <link rel="stylesheet" href="~/Application/Home/home.component.css"/>
+    <link rel="stylesheet" href="~/Application/Register/register.component.css"/>
+    <link rel="stylesheet" href="~/Application/Groups/groups.component.css"/>
+    <link rel="stylesheet" href="~/Application/Images/images.component.css" />
+    <link rel="stylesheet" href="~/Application/UploadImage/uploadimage.component.css"/>
+
+    <script src="~/Scripts/Angular2/shim.min.js"></script>
+    <!-- 1. Load libraries -->
+    <script src="~/Scripts/Angular2/zone.min.js"></script>
+    <script src="~/Scripts/Angular2/Reflect.js"></script>
+    <script src="~/Scripts/Angular2/system.src.js"></script>
+    <script src="~/Scripts/Angular2/systemjs.config.js"></script>
+    <script>
+        System.import('/Application/main').catch(console.error.bind(console));
+    </script>
+
+    <script src="~/Scripts/Libraries/JQuery/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/Libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Scripts/Libraries/angular2-bootstrap3-modal.min.js"></script>
+    <script src="~/Scripts/Libraries/JQuery/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/Scripts/Libraries/toastr.min.js"></script>
+    <script src="~/Scripts/Libraries/JQuery/jquery.pinto.min.js"></script>
+
+    <script src="~/Application/Shared/groupmembershiprole.models.js"></script>
+    <script src="~/Application/Shared/signalrstatus.models.js"></script>
+
+    <script src="~/signalr/hubs"></script>
+
+    <style>
+        path {
+            stroke: white !important;
+        }
+
+        .modal-dialog {
+            padding-top: 105px;
+        }
+    </style>
+</head>
+<body>
+
+    @RenderBody()
+
+    <script src="~/Scripts/Libraries/lightbox.min.js"></script>
+    <script src="~/Scripts/Libraries/select2.min.js"></script>
+</body>
+</html>

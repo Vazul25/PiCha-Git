@@ -1,0 +1,222 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h1>{{'profp' | translate}}</h1>
+        <md-card style="min-height:160px; background-color: white;" md-theme-watch>
+            <div class="row">
+                <div class="col-md-12" style="padding-top: 15px;">
+                    <div class="col-md-2" style="margin-right: 0;">
+                        <img class="profilePicture" src="http://www.gravatar.com/avatar.php?gravatar_id={{profile.emailHash}}" />
+                        <p style="text-align: center;"><a class="littleLink" href="http://en.gravatar.com/">{{ 'cpic' | translate }}</a></p>
+                    </div>
+                    <div class="col-md-6" style="padding-left: 0; font-size: 16px;">
+                        <p>{{ 'name' | translate }}: {{profile.name}}</p>
+                        <p>Email: {{profile.email}}</p>
+                    </div>
+                    <div class="col-md-4" layout="column" layout-align="start end">
+                        <button md-raised-button class="md-primary" style="width: 175px; margin: 5px;" [disabled]="sharedProperties.waitingForResp" (click)="changeUserNameModal.open()">{{ 'cname' | translate }}</button>
+                        <button md-raised-button class="md-primary" style="width: 175px; margin: 5px;" [disabled]="sharedProperties.waitingForResp" (click)="changeUserPasswordModal.open()">{{ 'cpass' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </md-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <button md-raised-button class="md-primary" style="width: 175px; margin: 5px;" [disabled]="sharedProperties.waitingForResp" (click)="createNewGroupModal.open()">{{ 'cng' | translate }}</button>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 35px;">
+    <div class="col-md-12">
+        <div class="tabsdemoDynamicHeight" ng-cloak="">
+            <md-content>
+                <md-tab-group md-border-bottom="" md-dynamic-height="">
+                    <md-tab>
+                        <template md-tab-label>
+                            {{ 'ogrp' | translate }}
+                        </template>
+                        <template md-tab-content>
+                            <table class="table">
+                                <tr>
+                                    <th class="col-md-1">{{ 'name' | translate }}</th>
+                                    <th class="col-md-1">{{ 'priv' | translate }}</th>
+                                    <th class="col-md-2">{{ 'desc' | translate }}</th>
+                                    <th class="col-md-8">{{ 'act' | translate }}</th>
+                                </tr>
+                                <tr *ngFor="let g of adminedGroups">
+                                    <td class="col-md-1">{{g.name}}</td>
+                                    <td class="col-md-1">
+                                        <!--<md-checkbox aria-label="Profile group isPrivate checkbox" ng-disabled="true" ng-checked="g.isPrivate == true"></md-checkbox>-->
+                                        <md-checkbox [disabled]="true" [checked]="g.isPrivate"></md-checkbox>
+                                    </td>
+                                    <td class="col-md-2">{{g.description}}</td>
+                                    <td>
+                                        <!--Role: 1=NotMember 2=Pending 3=Member 4=Admin 5=Owner-->
+                                        <button md-raised-button color="accent" [disabled]="sharedProperties.waitingForResp" (click)="setSelectedGroupIndex(g.id); changeGroupNameModal.open();">{{ 'ren' | translate }}</button>
+                                        <button md-raised-button color="accent" [disabled]="sharedProperties.waitingForResp" (click)="setSelectedGroupIndex(g.id); changeGroupDescriptionModal.open();">{{ 'cdes' | translate }}</button>
+                                        <button md-raised-button color="warn" [disabled]="sharedProperties.waitingForResp" *ngIf="g.role == 5" (click)="setSelectedGroupIndex(g.id); deleteGroupModal.open();">{{ 'del' | translate }}</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </template>
+                    </md-tab>
+                    <md-tab>
+                        <template md-tab-label>
+                            {{ 'jreq' | translate }}
+                        </template>
+                        <template md-tab-content>
+                            <button md-raised-button [disabled]="sharedProperties.waitingForResp" (click)="getRequests()">{{ 'fresh' | translate }}</button>
+                            <table class="table">
+                                <tr>
+                                    <th class="col-md-1">{{ 'name' | translate }}</th>
+                                    <th class="col-md-2">{{ 'grpnm' | translate }}</th>
+                                    <th class="col-md-9">{{ 'owrnm' | translate }}</th>
+                                </tr>
+
+                                <tr *ngFor="let r of requests">
+                                    <td class="col-md-1">{{r.joinerName}}</td>
+                                    <td class="col-md-2">{{r.groupName}}</td>
+                                    <td class="col-md-2">{{r.ownerName}}</td>
+
+                                    <td>
+                                        <button md-raised-button color="primary" [disabled]="sharedProperties.waitingForResp" (click)="acceptRequest(r.groupMembershipId)">{{ 'acc' | translate }}</button>
+                                        <button md-raised-button color="warn" [disabled]="sharedProperties.waitingForResp" (click)="rejectRequest(r.groupMembershipId)">{{ 'rej' | translate }}</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </template>
+                    </md-tab>
+                </md-tab-group>
+            </md-content>
+        </div>
+    </div>
+</div>
+
+<!-- Modals -->
+<modal #changeUserNameModal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">{{ 'cyn' | translate }}</h4>
+    </modal-header>
+    <modal-body>
+        <form #changeUserNameForm="ngForm" (ngSubmit)="changeUserName()">
+            <div class="form-group">
+                <md-input type="text" name="name" class="login-component-input" placeholder="{{ 'nn' | translate }}" [(ngModel)]="newUserName" required maxlength="1000"></md-input>
+            </div>
+        </form>
+    </modal-body>
+    <modal-footer [show-default-buttons]="false">
+        <button md-raised-button (click)="changeUserNameModal.close()">{{ 'can' | translate }}</button>
+        <button md-raised-button color="primary" (click)="changeUserName()" [disabled]="!changeUserNameForm.form.valid">{{ 'sav' | translate }}</button>
+    </modal-footer>
+</modal>
+
+<modal #changeUserPasswordModal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">{{ 'cyp' | translate }}</h4>
+    </modal-header>
+    <modal-body>
+        <!--#changeUserPasswordForm="ngForm"-->
+        <form [formGroup]="changeUserPasswordForm" (ngSubmit)="changeUserPassword()">
+            <p>
+                <md-input type="password" name="currentPassword" class="login-component-input" placeholder="{{ 'cur' | translate }}" [formControl]="currentPassword" required minlength="6" maxlength="32" pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,32}$"  ></md-input>
+                <span class="md-body-1 errorMessage" *ngIf="currentPassword.errors && currentPassword.errors.pattern">{{'val5' | translate}}</span>
+                <span class="md-body-1 errorMessage" *ngIf="currentPassword.errors && currentPassword.errors.minlength">{{'val4' | translate}}</span>
+                <span class="md-body-1 errorMessage" *ngIf="currentPassword.errors && currentPassword.errors.maxlength">{{'val3' | translate}}</span>
+                <span class="md-body-1 errorMessage" *ngIf="currentPassword.errors && currentPassword.errors.required">{{'req' | translate}}</span>
+
+            </p>
+            <p>
+                <md-input type="password" name="newPassword" class="login-component-input" placeholder="{{ 'npass' | translate }}" [formControl]="newPassword" required minlength="6" maxlength="32" pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,32}$"></md-input>
+                <span class="md-body-1 errorMessage" *ngIf="newPassword.errors && newPassword.errors.pattern">{{'val5' | translate}}</span>
+                <span class="md-body-1 errorMessage" *ngIf="newPassword.errors && newPassword.errors.minlength">{{'val4' | translate}}</span>
+                <span class="md-body-1 errorMessage" *ngIf="newPassword.errors && newPassword.errors.maxlength">{{'val3' | translate}}</span>
+                <span class="md-body-1 errorMessage" *ngIf="newPassword.errors && newPassword.errors.required">{{'req' | translate}}</span>
+       
+            </p>
+            <p>
+                <md-input type="password" name="newPasswordConfirm" class="login-component-input" placeholder="{{ 'npconf' | translate }}" [formControl]="newPasswordConfirm" required minlength="6" maxlength="32" pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,32}$" [mymatch]="newPassword" ></md-input>
+                <span class="md-body-1 errorMessage" *ngIf="newPasswordConfirm.errors && newPasswordConfirm.errors.pattern">{{'val5' | translate}}</span>
+                <span class="md-body-1 errorMessage" *ngIf="newPasswordConfirm.errors && newPasswordConfirm.errors.minlength">{{'val4' | translate}}</span>
+                <span class="md-body-1 errorMessage" *ngIf="newPasswordConfirm.errors && newPasswordConfirm.errors.maxlength">{{'val3' | translate}}</span>
+                <span class="md-body-1 errorMessage" *ngIf="newPasswordConfirm.errors && newPasswordConfirm.errors.required">{{'req' | translate}}</span>
+                <span class="md-body-1 errorMessage" *ngIf="newPasswordConfirm.errors && newPasswordConfirm.errors.mymatch">Must match</span>
+            </p>
+        </form>
+    </modal-body>
+    <modal-footer [show-default-buttons]="false">
+        <button md-raised-button (click)="changeUserPasswordModal.close()">{{ 'can' | translate }}</button>
+        <!--(click)="changeUserPassword()" [disabled]="!changeUserPasswordForm.form.valid"-->
+       
+        <button md-raised-button color="primary" type="submit" [disabled]="!changeUserPasswordForm.valid">{{ 'sav' | translate }}</button>
+    </modal-footer>
+</modal>
+
+<modal #createNewGroupModal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">{{ 'cng' | translate }}</h4>
+    </modal-header>
+    <modal-body>
+        <form #createGroupForm="ngForm" (ngSubmit)="createGroup()">
+            <div class="form-group">
+                <md-input type="text" name="name" class="login-component-input" placeholder="{{ 'nn' | translate }}" [(ngModel)]="newGroupName" required maxlength="1000"></md-input>
+            </div>
+            <div class="form-group">
+                <md-checkbox name="isPrivate" [(ngModel)]="isNewGroupPrivate">{{ 'priv' | translate }}</md-checkbox>
+            </div>
+        </form>
+    </modal-body>
+    <modal-footer [show-default-buttons]="false">
+        <button md-raised-button (click)="createNewGroupModal.close()">{{ 'can' | translate }}</button>
+        <button md-raised-button color="primary" (click)="createGroup()" [disabled]="!createGroupForm.form.valid">{{ 'cr' | translate }}</button>
+    </modal-footer>
+</modal>
+
+<modal #changeGroupNameModal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">{{ 'cgn' | translate }}</h4>
+    </modal-header>
+    <modal-body>
+        <form #changeGroupNameForm="ngForm" (ngSubmit)="changeGroupName()">
+            <div class="form-group">
+                <md-input type="text" name="name" class="login-component-input" placeholder="{{ 'nn' | translate }}" [(ngModel)]="newGroupName" required maxlength="1000"></md-input>
+            </div>
+        </form>
+    </modal-body>
+    <modal-footer [show-default-buttons]="false">
+        <button md-raised-button (click)="changeGroupNameModal.close()">{{ 'can' | translate }}</button>
+        <button md-raised-button color="primary" (click)="changeGroupName()" [disabled]="!changeGroupNameForm.form.valid">{{ 'sav' | translate }}</button>
+    </modal-footer>
+</modal>
+
+<modal #changeGroupDescriptionModal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">{{ 'cgd' | translate }}</h4>
+    </modal-header>
+    <modal-body>
+        <form #changeGroupDescriptionForm="ngForm" (ngSubmit)="changeGroupDescription()">
+            <div class="form-group">
+                <md-input type="text" name="description" class="login-component-input" placeholder="{{ 'nd' | translate }}" [(ngModel)]="newGroupDescription" required maxlength="1000"></md-input>
+            </div>
+        </form>
+    </modal-body>
+    <modal-footer [show-default-buttons]="false">
+        <button md-raised-button (click)="changeGroupDescriptionModal.close()">{{ 'can' | translate }}</button>
+        <button md-raised-button color="primary" (click)="changeGroupDescription()" [disabled]="!changeGroupDescriptionForm.form.valid">{{ 'sav' | translate }}</button>
+    </modal-footer>
+</modal>
+
+<modal #deleteGroupModal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">{{ 'que7' | translate }}</h4>
+    </modal-header>
+    <modal-body>
+        <h4>{{ 'que1' | translate }}</h4>
+        <p>{{ 'que6' | translate }}</p>
+    </modal-body>
+    <modal-footer [show-default-buttons]="false">
+        <button md-raised-button (click)="deleteGroupModal.close()">{{ 'can' | translate }}</button>
+        <button md-raised-button color="primary" (click)="deleteGroup()">{{ 'del' | translate }}</button>
+    </modal-footer>
+</modal>

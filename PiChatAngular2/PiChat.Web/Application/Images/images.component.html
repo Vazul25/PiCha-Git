@@ -1,0 +1,96 @@
+﻿<h1>{{'img' | translate}}</h1>
+
+<div style="padding-bottom: 25px;">
+    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="col-md-3">
+            <label>{{'grp' | translate}}</label>
+            <ng2-dropdown class="md-block" flex-gt-sm>
+                <ng2-dropdown-button>{{selectedGroupsName}}</ng2-dropdown-button>
+                <ng2-dropdown-menu>
+                    <ng2-menu-item (click)="selectedGroupChanged(-1)">{{'all' | translate}}</ng2-menu-item>
+                    <ng2-menu-item *ngFor="let grp of myGroups" (click)="selectedGroupChanged(grp.id)">{{grp.name}}</ng2-menu-item>
+                </ng2-dropdown-menu>
+            </ng2-dropdown>
+        </div>
+        <div class="col-md-3 col-md-offset-6" style="padding-right: 25px;">
+            <label>{{'imgs' | translate}}</label>
+            <ng2-dropdown class="md-block" flex-gt-sm>
+                <ng2-dropdown-button>{{selectedSize}}</ng2-dropdown-button>
+                <ng2-dropdown-menu>
+                    <ng2-menu-item (click)="selectImageSize('large')">{{'lg' | translate}}</ng2-menu-item>
+                    <ng2-menu-item (click)="selectImageSize('medium')">{{'md' | translate}}</ng2-menu-item>
+                    <ng2-menu-item (click)="selectImageSize('small')">{{'sm' | translate}}</ng2-menu-item>
+                </ng2-dropdown-menu>
+            </ng2-dropdown>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" *ngIf="images.length > 0">
+            <div class="grid">
+                <div class="grid-sizer"></div>
+                <div class="grid-item pinto" *ngFor="let image of images">
+                    <md-card md-theme="default" md-theme-watch>
+                        <div class="col-md-12" style="height: 50px; margin-top: 15px;">
+                            <div class="col-md-6">
+                                <span>{{image.ownerName}} ({{image.groupName}})</span>
+                            </div>
+                            <div class="col-md-6" style="text-align:end;">
+                                {{image.uploadTime | date:'yyyy.MM.dd. HH:mm:ss'}}
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="padding: 0;">
+                            <a href="api/Image/GetImage/{{image.imageId}}" data-lightbox="roadtrip" data-title="{{image.description}}" title="{{image.description}}">
+                                <span class="magnify-overlay"></span>
+                                <img [myHttpSrc]="'api/Image/GetImage/'+image.imageId" class="myimg" style="margin: auto;" src="" />
+                            </a>
+                        </div>
+                        <div class="col-md-12" style="text-align: center; margin-top: 10px; margin-bottom: 10px; font-weight: bold; font-style: italic;">
+                            <span>{{image.description}}</span>
+                        </div>
+                        <div class="col-md-12 card-button-container">
+                            <button md-raised-button color="accent" *ngIf="image.isMine" (click)="setImageId(image.imageId); changeImageDescriptionModal.open();" [disabled]="sharedProperties.waitingForResp">{{'cdes' | translate}}</button>
+                            <button md-raised-button color="warn" *ngIf="image.isMine" (click)="setImageId(image.imageId); deleteImageModal.open();" [disabled]="sharedProperties.waitingForResp">{{'del' | translate}}</button>
+                        </div>
+                    </md-card>
+                </div>
+            </div>
+            <div class="row" style="text-align: center; margin-top: 20px;">
+                <button md-fab *ngIf="hasMore" class="fab" (click)="showMore()">{{'more' | translate}}</button>
+                <div class="alert alert-success alert-message" role="alert" *ngIf="!hasMore">{{'msg5' | translate}}</div>
+            </div>
+        </div>
+        <div class="alert alert-success alert-message" role="alert" *ngIf="images.length == 0">{{'msg6' | translate}}</div>
+    </div>
+</div>
+
+<modal #deleteImageModal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">{{'que3' | translate}}</h4>
+    </modal-header>
+    <modal-body>
+        <h4>{{'que1' | translate}}</h4>
+        <p>{{'que2' | translate}}</p>
+    </modal-body>
+    <modal-footer>
+        <button md-raised-button (click)="deleteImageModal.dismiss()">{{'can' | translate}}</button>
+        <button md-raised-button color="primary" (click)="deleteImage()">{{'del' | translate}}</button>
+    </modal-footer>
+</modal>
+
+<modal #changeImageDescriptionModal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">{{'cid' | translate}}</h4>
+    </modal-header>
+    <modal-body>
+        <form #changeImageDescriptionForm="ngForm" (ngSubmit)="changeImageDescription()">
+            <div class="form-group">
+                <md-input type="text" name="description" class="login-component-input" placeholder="{{'nd' | translate}}" [(ngModel)]="newImageDescription" required maxlength="1000"></md-input>
+            </div>
+        </form>
+    </modal-body>
+    <modal-footer>
+        <button md-raised-button (click)="changeImageDescriptionModal.dismiss()">{{'can' | translate}}</button>
+        <button md-raised-button color="primary" (click)="changeImageDescription()" [disabled]="!changeImageDescriptionForm.form.valid">{{'sav' | translate}}</button>
+    </modal-footer>
+</modal>

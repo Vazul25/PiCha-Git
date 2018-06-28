@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="acc" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="act" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="act1" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="all" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="brw" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="can" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="canall" xml:space="preserve">
+    <value>Cancel all</value>
+  </data>
+  <data name="cdes" xml:space="preserve">
+    <value>Change Description</value>
+  </data>
+  <data name="cgd" xml:space="preserve">
+    <value>Change group description</value>
+  </data>
+  <data name="cgn" xml:space="preserve">
+    <value>Change group name</value>
+  </data>
+  <data name="cid" xml:space="preserve">
+    <value>Change image description</value>
+  </data>
+  <data name="cl" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="cname" xml:space="preserve">
+    <value>Change Name</value>
+  </data>
+  <data name="cng" xml:space="preserve">
+    <value>Create new group</value>
+  </data>
+  <data name="cpass" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="cpic" xml:space="preserve">
+    <value>Change picture</value>
+  </data>
+  <data name="cr" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="cur" xml:space="preserve">
+    <value>Current password</value>
+  </data>
+  <data name="cyn" xml:space="preserve">
+    <value>Change your name</value>
+  </data>
+  <data name="cyp" xml:space="preserve">
+    <value>Change your password</value>
+  </data>
+  <data name="del" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="desc" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="err" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="err1" xml:space="preserve">
+    <value>Join Error</value>
+  </data>
+  <data name="err2" xml:space="preserve">
+    <value>Leave Error</value>
+  </data>
+  <data name="err3" xml:space="preserve">
+    <value>Accept request error</value>
+  </data>
+  <data name="err4" xml:space="preserve">
+    <value>Reject request error</value>
+  </data>
+  <data name="err5" xml:space="preserve">
+    <value>Group delete error</value>
+  </data>
+  <data name="err6" xml:space="preserve">
+    <value>Server error</value>
+  </data>
+  <data name="err7" xml:space="preserve">
+    <value>Image delete error</value>
+  </data>
+  <data name="err8" xml:space="preserve">
+    <value>Admin grant failed</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Something went wrong!</value>
+  </data>
+  <data name="errX" xml:space="preserve">
+    <value>Sorry, the operation couldn't be executed.</value>
+  </data>
+  <data name="errY" xml:space="preserve">
+    <value>Please refresh the page or try again later.</value>
+  </data>
+  <data name="errZ" xml:space="preserve">
+    <value>You either don't have authority or there is a problem with the server, refresh page and try again</value>
+  </data>
+  <data name="ferr1" xml:space="preserve">
+    <value>Upload Error</value>
+  </data>
+  <data name="ferr2" xml:space="preserve">
+    <value>Please select files (less than 100MB), or try again later</value>
+  </data>
+  <data name="fil" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="fl" xml:space="preserve">
+    <value>Files:</value>
+  </data>
+  <data name="fresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="gerr1" xml:space="preserve">
+    <value>Wrong Group Selected</value>
+  </data>
+  <data name="gerr2" xml:space="preserve">
+    <value>Please select an existing group</value>
+  </data>
+  <data name="gerr3" xml:space="preserve">
+    <value>Wrong group</value>
+  </data>
+  <data name="gr" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="grp" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="grpnm" xml:space="preserve">
+    <value>Group Name</value>
+  </data>
+  <data name="hom" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="img" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="imgs" xml:space="preserve">
+    <value>Image size</value>
+  </data>
+  <data name="jreq" xml:space="preserve">
+    <value>Join Requests</value>
+  </data>
+  <data name="lg" xml:space="preserve">
+    <value>Large</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="logmsg" xml:space="preserve">
+    <value>If you don't have an account, click here to register.</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="md" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="mem" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Show More</value>
+  </data>
+  <data name="msg1" xml:space="preserve">
+    <value>You have no groups or subscribes.</value>
+  </data>
+  <data name="msg10" xml:space="preserve">
+    <value>The password could not be changed</value>
+  </data>
+  <data name="msg11" xml:space="preserve">
+    <value>The name could not be changed</value>
+  </data>
+  <data name="msg2" xml:space="preserve">
+    <value>You have reached the end of the line, ain't no more groups.</value>
+  </data>
+  <data name="msg3" xml:space="preserve">
+    <value>There are no groups for the requested filter.</value>
+  </data>
+  <data name="msg4" xml:space="preserve">
+    <value>There isn't a group where you didn't subscribe to.</value>
+  </data>
+  <data name="msg5" xml:space="preserve">
+    <value>You have reached the end of the line, ain't no more images.</value>
+  </data>
+  <data name="msg6" xml:space="preserve">
+    <value>No images in the group.</value>
+  </data>
+  <data name="msg7" xml:space="preserve">
+    <value>The Image description could not be changed.</value>
+  </data>
+  <data name="msg8" xml:space="preserve">
+    <value>Group name couldn't be changed</value>
+  </data>
+  <data name="msg9" xml:space="preserve">
+    <value>The group couldn't be created</value>
+  </data>
+  <data name="myg" xml:space="preserve">
+    <value>My groups</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="nd" xml:space="preserve">
+    <value>New description</value>
+  </data>
+  <data name="nn" xml:space="preserve">
+    <value>New name</value>
+  </data>
+  <data name="npass" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="npconf" xml:space="preserve">
+    <value>New password confirm</value>
+  </data>
+  <data name="ogrp" xml:space="preserve">
+    <value>Owned and Administrated Groups</value>
+  </data>
+  <data name="ok1" xml:space="preserve">
+    <value>Got it!</value>
+  </data>
+  <data name="opass" xml:space="preserve">
+    <value>Old password</value>
+  </data>
+  <data name="oth" xml:space="preserve">
+    <value>Other groups</value>
+  </data>
+  <data name="owrnm" xml:space="preserve">
+    <value>Owner Name</value>
+  </data>
+  <data name="pass" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="passc" xml:space="preserve">
+    <value>Password Confirm</value>
+  </data>
+  <data name="pen" xml:space="preserve">
+    <value>Pending...</value>
+  </data>
+  <data name="pic" xml:space="preserve">
+    <value>Pictures</value>
+  </data>
+  <data name="pic1" xml:space="preserve">
+    <value>Picture</value>
+  </data>
+  <data name="pop1" xml:space="preserve">
+    <value>A popup dialog could not open, refresh the page</value>
+  </data>
+  <data name="pop2" xml:space="preserve">
+    <value>Popup error</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="priv" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="prof" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="profp" xml:space="preserve">
+    <value>Profile page</value>
+  </data>
+  <data name="prog" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="prom" xml:space="preserve">
+    <value>Promote</value>
+  </data>
+  <data name="que1" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="que2" xml:space="preserve">
+    <value>This image will be deleted permanently.</value>
+  </data>
+  <data name="que3" xml:space="preserve">
+    <value>Delete Image</value>
+  </data>
+  <data name="que4" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="que5" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="que6" xml:space="preserve">
+    <value>This group and all of it's images will be deleted permanently.</value>
+  </data>
+  <data name="que7" xml:space="preserve">
+    <value>Delete group</value>
+  </data>
+  <data name="quel" xml:space="preserve">
+    <value>Queue length</value>
+  </data>
+  <data name="quepr" xml:space="preserve">
+    <value>Queue upload progress</value>
+  </data>
+  <data name="reg" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="regerr1" xml:space="preserve">
+    <value>Email is in use</value>
+  </data>
+  <data name="regerr2" xml:space="preserve">
+    <value>Wrong email adress</value>
+  </data>
+  <data name="regmsg" xml:space="preserve">
+    <value>If you already have an account, click here to login.</value>
+  </data>
+  <data name="rej" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="rem" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="remall" xml:space="preserve">
+    <value>Remove all</value>
+  </data>
+  <data name="ren" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="req" xml:space="preserve">
+    <value>Required.</value>
+  </data>
+  <data name="sav" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="sel" xml:space="preserve">
+    <value>Select and upload new pictures</value>
+  </data>
+  <data name="selgr" xml:space="preserve">
+    <value>Select group</value>
+  </data>
+  <data name="sm" xml:space="preserve">
+    <value>Small</value>
+  </data>
+  <data name="stat" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="sub" xml:space="preserve">
+    <value>Subscribe</value>
+  </data>
+  <data name="suc1" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="suc10" xml:space="preserve">
+    <value>Group deleted successfully!</value>
+  </data>
+  <data name="suc11" xml:space="preserve">
+    <value>Request accepted!</value>
+  </data>
+  <data name="suc12" xml:space="preserve">
+    <value>Request rejected!</value>
+  </data>
+  <data name="suc13" xml:space="preserve">
+    <value>Successful registration!</value>
+  </data>
+  <data name="suc14" xml:space="preserve">
+    <value>Please log in to continue!</value>
+  </data>
+  <data name="suc2" xml:space="preserve">
+    <value>Your files uploaded successfully</value>
+  </data>
+  <data name="suc3" xml:space="preserve">
+    <value>Image deleted successfully!</value>
+  </data>
+  <data name="suc4" xml:space="preserve">
+    <value>Image description changed successfully!</value>
+  </data>
+  <data name="suc5" xml:space="preserve">
+    <value>Your name successfully changed to '</value>
+  </data>
+  <data name="suc6" xml:space="preserve">
+    <value>Your password successfully changed!</value>
+  </data>
+  <data name="suc7" xml:space="preserve">
+    <value>Group created with name '</value>
+  </data>
+  <data name="suc8" xml:space="preserve">
+    <value>Group renamed successfully to '</value>
+  </data>
+  <data name="suc9" xml:space="preserve">
+    <value>Group description successfully changed to '</value>
+  </data>
+  <data name="sz" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="treq" xml:space="preserve">
+    <value>This is required.</value>
+  </data>
+  <data name="typgr" xml:space="preserve">
+    <value>Type a group here</value>
+  </data>
+  <data name="uns" xml:space="preserve">
+    <value>Unsubscribe</value>
+  </data>
+  <data name="upall" xml:space="preserve">
+    <value>Upload all</value>
+  </data>
+  <data name="upl" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="upl1" xml:space="preserve">
+    <value>Drag files here to upload</value>
+  </data>
+  <data name="upli" xml:space="preserve">
+    <value>Upload images</value>
+  </data>
+  <data name="uplqu" xml:space="preserve">
+    <value>Upload queue</value>
+  </data>
+  <data name="val1" xml:space="preserve">
+    <value>Your email must be a valid email address.</value>
+  </data>
+  <data name="val2" xml:space="preserve">
+    <value>Bad username or password.</value>
+  </data>
+  <data name="val3" xml:space="preserve">
+    <value>The password has to be less than 32 characters long.</value>
+  </data>
+  <data name="val4" xml:space="preserve">
+    <value>The password has to be more than 5 characters long.</value>
+  </data>
+  <data name="val5" xml:space="preserve">
+    <value>The password must contain at least 1 small, 1 capital letter, 1 number.</value>
+  </data>
+  <data name="val6" xml:space="preserve">
+    <value>Passwords do not match.</value>
+  </data>
+  <data name="wel" xml:space="preserve">
+    <value>Welcome </value>
+  </data>
+  <data name="notValidEmail" xml:space="preserve">
+    <value>It must be a valid email adress.</value>
+  </data>
+  <data name="passwordMatchError" xml:space="preserve">
+    <value>The password and confirmation password must match.</value>
+  </data>
+  <data name="sgu" xml:space="preserve">
+    <value>Select a group to upload</value>
+  </data>
+</root>

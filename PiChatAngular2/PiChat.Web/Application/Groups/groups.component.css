@@ -1,0 +1,24 @@
+﻿md-grid-tile {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+    background-color: rgb(255,255,255);
+    border-radius: 3px;
+}
+
+.groupinfo {
+    text-align: center;
+    padding: 6px;
+    width: 100%;
+}
+
+.groupinfo div {
+    cursor: pointer;
+}
+
+.fab {
+    height: 80px;
+    width: 80px;
+}
+
+.groupSearchContainer .md-input-prefix {
+    width: 24px !important;
+}

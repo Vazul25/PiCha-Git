@@ -1,0 +1,43 @@
+﻿<div class="row">
+    <div>
+        <section>
+            <md-toolbar [color]="primary">
+                <div class="md-toolbar-tools">
+                    <h3>PiChat</h3>
+                    <span class="example-fill-remaining-space"></span>
+                    <!--<language-select></language-select>-->
+                    <button md-raised-button style="width: 100px;" ng-click="homeCtrl.showProfilePage();" ng-hide="homeCtrl.isTabsHidden">
+                        <md-icon>face</md-icon> Profile
+                    </button>
+                    <button md-raised-button style="width: 100px;" ng-click="homeCtrl.hideProfilePage();" ng-hide="!homeCtrl.isTabsHidden">
+                        <md-icon>home</md-icon> Home
+                    </button>
+                    <button md-raised-button style="width: 100px;" ng-click="homeCtrl.logout()">
+                        <span class="glyphicon glyphicon-log-out"></span> Logout
+                    </button>
+                </div>
+            </md-toolbar>
+            <div>
+                <div class="tabsdemoDynamicHeight" ng-cloak="" ng-hide="homeCtrl.isTabsHidden">
+                    <md-content>
+                        <md-tab-group md-border-bottom="" md-dynamic-height="" md-selected="homeCtrl.selectedTabIndex">
+                            <md-tab ng-click="homeCtrl.selectTab();">
+                                <template md-tab-label>Pictures</template>
+                            </md-tab>
+                            <md-tab ng-click="homeCtrl.selectTab();">
+                                <template md-tab-label>Groups</template>
+                            </md-tab>
+                            <md-tab layout-align="end" ng-click="homeCtrl.selectTab();">
+                                <template md-tab-label>Upload images</template>
+                            </md-tab>
+                            <span flex></span>
+                        </md-tab-group>
+                    </md-content>
+                </div>
+                <div class="col-md-12" style="padding-top: 20px;background-color: #f6f6f6;">
+                    <ng-outlet></ng-outlet>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

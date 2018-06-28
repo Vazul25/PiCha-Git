@@ -1,0 +1,90 @@
+﻿<div class="container">
+    <h1>{{ 'upl' | translate }}</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>{{ 'selgr' | translate }}</h3>
+            <select class="group-select" style="width: 100%;">
+                <option></option>
+            </select>
+
+            <h3>{{ 'sel' | translate }}</h3>
+            <input type="file" ng2FileSelect [uploader]="uploader" multiple /><br />
+        </div>
+        <div class="col-md-6">
+            <div ng2FileDrop
+                 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                 (fileOver)="fileOverBase($event)"
+                 [uploader]="uploader"
+                 class="well my-drop-zone droparea ">
+                <p class="droptext">{{ 'upl1' | translate }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom: 40px">
+            <h3>{{ 'uplqu' | translate }}</h3>
+            <p>{{ 'quel' | translate }}: </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="25%">{{'preview'|translate}}</th>
+                        <th width="25%">{{ 'name' | translate }}</th>
+                        <th>{{ 'sz' | translate }}</th>
+                        <th>{{ 'prog' | translate }}</th>
+                        <th>{{ 'stat' | translate }}</th>
+                        <th>{{ 'act' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of uploader.queue;let i =index">
+                        <td width="33%"><img class="myPreviewImage" src="" [myPreviewImage]="item._file" alt="" /></td>
+                        <td><strong>{{item.file.name}}</strong></td>
+                        <td nowrap>{{item.file.size/1024/1024|number:'.1-2'}} MB</td>
+                        <td>
+                            <div class="progress" style="margin-bottom: 0;">
+                                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                            <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                            <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                        </td>
+                        <td nowrap>
+                            <button type="button" class="btn btn-success btn-xs"
+                                    (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                <span class="glyphicon glyphicon-upload"></span> {{ 'upl' | translate }}
+                            </button>
+                           
+                            <button type="button" class="btn btn-danger btn-xs"
+                                    (click)="item.remove()">
+                                <span class="glyphicon glyphicon-trash"></span> {{ 'rem' | translate }}
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <div>
+                    {{ 'quepr' | translate }}:
+                    <div class="progress" style="">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success btn-s"
+                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length || !groupSelected">
+                    <span class="glyphicon glyphicon-upload"></span> {{ 'upall' | translate }}
+                </button>
+               
+                <button type="button" class="btn btn-danger btn-s"
+                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> {{ 'remall' | translate }}
+                </button>
+            </div>
+
+        </div>
+        
+    </div>
+
+</div>
